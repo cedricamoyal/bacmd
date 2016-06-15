@@ -48,7 +48,13 @@ class FlightsController < ApplicationController
 
     redirect_to flights_path
     end
+
   end
+
+def search
+
+end
+
 
   private
 
