@@ -1,0 +1,39 @@
+
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+          <h2>This should show all your reservations:</h2>
+      </div>
+  </div>
+
+
+  <br>
+  <div class='container'>
+    <div class='row text-center'>
+            <div class='col-md-12'>
+                  <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new reservation", new_reservation_path(@current_user) %></button>
+            </div>
+    </div>
+  </div>
+
+<br>
+<div class='container'>
+  <% @current_user.reservations.each do |reservation| %>
+      <div class='col-md-4'>
+        <div class="stepsDetailsShow">
+
+              <h4><%= link_to reservation.name, "/reservations/#{reservation.id}" %></h4>
+
+              <h5>Current user name: <span><%= @current_user.name %></span></h5>
+              <h5>Flight ID: <span><%= reservation.flight.id %></span></h5>
+              <h5>Flight name: <span><%= reservation.flight.number %></span></h5>
+              <h5>Plane name: <span><%= reservation.flight.plane.name %></span></h5>
+              <h5>Row: <span><%= reservation.rows %></span></h5>
+              <h5>Column: <span><%= reservation.columns %></span></h5>
+              <h5>Reservation_ID: <span><%= reservation.id %></span></h5>
+
+            </div>
+          </div>
+
+  <% end %>
+</div>

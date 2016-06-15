@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>bacmd</title>
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+
+</head>
+<body>
+
+<!--
+
+"show all the users" = /users
+"view a profile" = /users/1
+"edit a user" = /users/1/edit
+"delete an account" = /users/1/delete
+"create an account" = /users/new
+
+ -->
+
+
+  <div class='navbar navbar-default navbar-static-top'>
+      <div class='container'>
+
+        <a href="/login" class='navbar-brand'>BACMD</a>
+
+        <ul class='nav navbar-nav navbar-right'>
+            <% if @current_user && @current_user.admin %>
+                <li><%= link_to "All users", users_path %></li>
+            <% end %>
+
+            <% if @current_user %>
+
+            <li><a href="#" data-toggle='dropdown'><%=@current_user.name%>'s reservations<span class='caret'></span></a>
+                <ul class='dropdown-menu'>
+                  <li><%= link_to( "See your reservations", reservations_path( @user)) %></li>
+                  <li><%= link_to "Create a new reservation", new_reservation_path(@current_user) %></li>
+                </ul>
+            </li>
+
+            <li><a href="#" data-toggle='dropdown'>Planes/Flights<span class='caret'></span></a>
+                <ul class='dropdown-menu'>
+
+                    <li><%= link_to "See all the planes", planes_path, :class => "links" %></li>
+                    <li><%= link_to "See all the flights", flights_path, :class => "links" %></li>
+                </ul>
+            </li>
+
+                <li><a href="#" data-toggle='dropdown'><%=@current_user.name%>'s account<span class='caret'></span></a>
+                    <ul class='dropdown-menu'>
+                          <li><%= link_to "View profile", @current_user %></li>
+                          <li><%= link_to "Edit profile", edit_user_path(@current_user) %></li>
+                          <li class='divider'></li>
+                          <li><%= link_to "Delete account", user_path(@current_user), :method => :delete, :data => { :confirm => 'Are you sure?'} %></li>
+                          <li class='divider'></li>
+                          <li><%= link_to "Logout", logout_path, :method => :delete %></li>
+                    </ul>
+                </li>
+
+
+
+            <% else %>
+                <li><%= link_to "Sign in", login_path %></li>
+                <li><%= link_to "Sign up", new_user_path %></li>
+            <% end %>
+
+        </ul>
+    </div>
+ </div>
+
+<!--
+
+  <% if @current_user %>
+    <p>Your email is <%= @current_user.email %></p>
+    <p>Your admin status is <%= @current_user.admin %></p>
+  <% end %> -->
+
+  <% if flash[:success] %>
+    <p><%= flash[:success] %></p>
+  <% end %>
+
+  <% if flash[:error] %>
+    <p><%= flash[:error] %></p>
+  <% end %>
+
+  <%= yield %>
+
+  <br>
+  <br>
+
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</body>
+</html>

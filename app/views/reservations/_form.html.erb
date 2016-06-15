@@ -1,0 +1,45 @@
+<!-- t.integer :user_id
+t.integer :flight_id
+
+t.integer :rows
+t.integer :columns -->
+
+<%= form_for @reservation do |f| %>
+
+<div class='col-md-6 col-md-offset-3'>
+  <div class="stepsDetailsShow specialForm">
+
+
+    <p>
+      <%= f.label :name, :class => "label1" %>
+      <%= f.text_field :name, :required => true, :class => "inputs", :class => "label2" %>
+    </p>
+
+<p>
+  <%= f.label :flight_id, :class => "labels", :class => "label1" %>
+  <%= f.select :flight_id, Flight.all.map { |a| [ a.number, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
+</p>
+
+  <p>
+    <%= f.label :rows, :class => "label1" %>
+    <%= f.text_field :rows, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :columns, :class => "label1" %>
+    <%= f.text_field :columns, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :user_id, :class => "label1" %>
+    <%= f.text_field :user_id, :required => true, :class => "inputs", :value => "#{@current_user.id}", :class => "label2" %>
+  </p>
+
+  <br>
+
+  <%= f.submit %>
+
+</div>
+</div>
+
+<% end %>

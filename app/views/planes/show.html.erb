@@ -1,0 +1,61 @@
+
+<br>
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+            <h2><%= @plane.name %></h2>
+          </div>
+  </div>
+
+  <br>
+
+<br>
+<div class='row'>
+
+    <div class='col-md-4 col-md-offset-4'>
+      <div class="stepsDetailsShow">
+              <h5>Rows: <span><%= @plane.rows %></span></h5>
+              <h5>Columns: <span><%= @plane.columns %></span></h5>
+              <h5>ID: <span><%= @plane.id %></span></h5>
+                <br>
+
+<% if @current_user && @current_user.admin %>
+              <div class='row text-center'>
+              <button type='button' class='btn btn btn-default'><%= link_to "Edit Plane", edit_plane_path( @plane ), :class => "links" %></button>
+
+              <button type='button' class='btn btn btn-default'><%= link_to "Delete Plane", @plane, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+              </div>
+<% end %>
+
+        </div>
+      </div>
+    </div>
+
+
+      <div class='row text-center'>
+              <div class='col-md-12'>
+                      <h3>Flights:</h3>
+              </div>
+      </div>
+
+      <br>
+
+
+<% @plane.flights.each do |flight| %>
+
+    <div class='col-md-4'>
+      <div class="stepsDetails">
+
+        <h4><%= link_to flight.number, "/flights/#{flight.id}" %></h4>
+
+        <h5>Origin: <span><%= flight.origin %></span></h5>
+        <h5>Destination: <span><%= flight.destination %></span></h5>
+        <h5>Date: <span><%= flight.flightDate %></span></h5>
+        <h5>Plane_ID: <span><%= flight.plane_id %></span></h5>
+
+      </div>
+    </div>
+
+          <% end %>
+
+</div>

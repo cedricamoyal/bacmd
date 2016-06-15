@@ -1,0 +1,41 @@
+
+
+
+
+<%= form_for @user do |f| %>
+
+<div class='col-md-6 col-md-offset-3'>
+  <div class="stepsDetailsShow specialForm">
+
+<% if @user.errors.any? %>
+  <ol>
+    <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ol>
+<% end %>
+
+
+  <p>
+      <%= f.label :email, :class => "label1" %>
+      <%= f.email_field :email, :required => true, :class => "label2" %>
+  </p>
+  <p>
+      <%= f.label :name, :class => "label1"  %>
+      <%= f.text_field :name, :required => true, :class => "label2" %>
+  </p>
+
+  <p>
+      <%= f.label :password, :class => "label1"  %>
+      <%= f.password_field :password, :required => true, :class => "label2" %>
+  </p>
+  <p>
+      <%= f.label :password_confirmation, :class => "label1"  %>
+      <%= f.password_field :password_confirmation, :required => true, :class => "label2" %>
+  </p>
+<br>
+  <%= f.submit "Create/Edit account" %>
+</div>
+</div>
+
+<% end %>

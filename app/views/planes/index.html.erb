@@ -1,0 +1,36 @@
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+              <h2>This should show all the planes:</h2>
+            </div>
+    </div>
+
+    <% if @current_user && @current_user.admin %>
+
+        <br>
+
+          <div class='row text-center'>
+                  <div class='col-md-12'>
+                        <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new plane", new_plane_path %></button>
+                  </div>
+          </div>
+
+      <br>
+    <% end %>
+
+      <% @planes.each do |plane| %>
+
+            <div class='col-md-4'>
+                <div class="stepsDetailsShow">
+
+                  <h4><%= link_to plane.name, "/planes/#{plane.id}" %></h4>
+
+                  <h5>Rows: <span><%= plane.rows %></span></h5>
+                  <h5>Columns: <span><%= plane.columns %></span></h5>
+                  <h5>ID: <span><%= plane.id %></span></h5>
+                </div>
+           </div>
+      <% end %>
+
+
+</div>

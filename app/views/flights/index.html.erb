@@ -1,0 +1,38 @@
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+              <h2>This should show all the flights:</h2>
+            </div>
+    </div>
+
+    <% if @current_user && @current_user.admin %>
+
+        <br>
+
+          <div class='row text-center'>
+                  <div class='col-md-12'>
+                        <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new flight", new_flight_path %></button>
+                  </div>
+          </div>
+
+      <br>
+    <% end %>
+
+      <% @flights.each do |flight| %>
+
+            <div class='col-md-4'>
+                <div class="stepsDetailsShow">
+
+                  <h4><%= link_to flight.number, "/flights/#{flight.id}" %></h4>
+
+                  <h5>Origin: <span><%= flight.origin %></span></h5>
+                  <h5>Destination: <span><%= flight.destination %></span></h5>
+                  <h5>Date: <span><%= flight.flightDate %></span></h5>
+                  <h5>Plane_ID: <span><%= flight.plane_id %></span></h5>
+
+                </div>
+           </div>
+      <% end %>
+
+
+</div>

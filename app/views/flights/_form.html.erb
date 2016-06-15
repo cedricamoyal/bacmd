@@ -1,0 +1,49 @@
+
+<!-- t.text :number
+t.text :origin
+t.text :destination
+t.date :flightDate
+
+t.integer :plane_id -->
+
+
+<%= form_for @flight do |f| %>
+
+<div class='col-md-6 col-md-offset-3'>
+  <div class="stepsDetailsShow specialForm">
+
+  <p>
+    <%= f.label :number, :class => "labels", :class => "label1" %>
+    <%= f.text_field :number, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :plane_id, :class => "labels", :class => "label1" %>
+      <% sorted_planes = Plane.all.sort_by { |c| c.name } %>
+    <%= f.select :plane_id, sorted_planes.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :origin, :class => "labels", :class => "label1" %>
+    <%= f.text_field :origin, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :destination, :class => "labels", :class => "label1" %>
+    <%= f.text_field :destination, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :flightDate, :class => "labels", :class => "label1" %>
+    <%= f.text_field :flightDate, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+
+<br>
+
+  <%= f.submit %>
+
+</div>
+</div>
+
+<% end %>

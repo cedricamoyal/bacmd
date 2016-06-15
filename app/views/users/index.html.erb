@@ -1,0 +1,13 @@
+
+<% if @current_user && @current_user.admin %>
+      <% @users.each do |u| %>
+        <ul>
+            <li>Username: <%= link_to( u.name, user_path(u) ) %></li>
+            <li>Email: <%= u.email %></li>
+            <li>Password digest: <%= u.password_digest %></li>
+        </ul>
+      <% end %>
+      <% else %>
+            <h3>Hello, how are you today?</h3>
+            <h4>Select the links above to login or to create an account.</h4>
+<% end %>

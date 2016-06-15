@@ -1,0 +1,182 @@
+body {
+  // background-color: #F1F1F7;
+  background-color: #DCDCE4;
+}
+
+
+#right-panel {
+  // border: 2px solid green;
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+  padding: 20px;
+
+  line-height: 26px;
+  height: 480px;
+  background-color: #f8f8f8;
+}
+
+.container {
+  // border: 3px solid pink;
+}
+
+.col-md-3 {
+  padding: 10px;
+}
+
+.col-md-6 {
+  // border: 2px dashed black;
+  text-align: center;
+  padding: 10px;
+}
+
+.details {
+
+  height: 480px;
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f8f8f8;
+
+}
+
+
+#map {
+  width: 100%;
+  height: 480px;
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+}
+
+
+#right-panel select, #right-panel input {
+  font-size: 15px;
+}
+
+#right-panel select {
+  width: 100%;
+}
+
+#right-panel i {
+  font-size: 12px;
+}
+
+
+#directions-panel {
+  margin-top: 20px;
+  background-color: #f8f8f8;
+  padding: 10px;
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+}
+
+#waypoints {
+  height: 150px;
+}
+
+.submitCenter1 {
+  text-align: center;
+}
+
+.submitCenter2 {
+  display:inline-block;
+}
+
+#submit {
+    // border-radius: 5px;
+}
+
+
+
+b {
+  font-size: 18px;
+}
+
+.stepsDetails{
+  height: 580px;
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+.stepsDetailsShow{
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  height: 562px;
+}
+
+.col-md-4 {
+  padding: 10px;
+}
+.col-md-8 {
+  padding: 10px;
+}
+
+.stepsDetails h4 {
+  text-align: center;
+}
+
+.stepsDetails p {
+  text-align: justify;
+}
+
+.stepsDetailsShow h4 {
+  text-align: center;
+}
+
+.stepsDetailsShow p {
+  text-align: justify;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 200px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.featured {
+  width: 100%;
+  height: 520px;
+  // margin-top: 25px;
+  // margin-bottom: 25px;
+}
+
+.btn {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+span {
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 14px;
+line-height: 1.42857143;
+color: #333;
+font-weight: 200;
+}
+
+.specialForm p {
+  text-align: center;
+}
+
+.label1 {
+  width: 200px;
+  // text-align: right;
+  margin-right: 10px;
+  border: 1px solid grey;
+  border-radius: 3px;
+}
+.label2 {
+  width: 200px;
+  margin-left: 10px;
+  // border: 1px black solid;
+
+}
+
+.specialForm {
+  height: auto;
+  padding: 55px;
+
+}
