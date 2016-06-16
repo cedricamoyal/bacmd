@@ -14,9 +14,9 @@ $(document).ready(function() {
 
       app.reservations.fetch();
 
-      // window.setInterval(function(){
-      //   app.reservations.fetch();
-      // }, 3000);
+      window.setInterval(function(){
+        app.reservations.fetch();
+      }, 3000);
 
 
            })
