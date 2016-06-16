@@ -17,6 +17,8 @@ var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 var seatrow
 var seatcolumn
+var seatcolumnSent
+
 
 var createPixel = function(column, row) {
     for (var i = 0; i < row; i++) {
@@ -24,6 +26,7 @@ var createPixel = function(column, row) {
             $('<button/>', {
                 'class': 'pixel',
                 'data-column': alphabet[j],
+                'data-column2':j,
                 'data-row': i+1,
                 'width': 30 / column + 'vw',
                 'height': 3 + 'vh'
@@ -38,27 +41,44 @@ var createPixel = function(column, row) {
       console.log($(this).data("row"));
       console.log($(this).data("column"));
       // selectedSeat.css('background', 'none');
-
       selectedSeat.css('background', 'none');
       selectedSeat=$(this)
-
       $(this).css('background', 'red');
 
       seatrow = $(this).data("row")
       seatcolumn = $(this).data("column")
-
+      seatcolumnSent = $(this).data("column2")
       $('.selectSeatShow').text('Your Seat : ' + seatrow +seatcolumn )
       // $('button[data-column='seatcolumn'"][data-row="'seatrow'"]').css(('background', 'red'))
         $('button[data-column=' + seatcolumn + '][data-row=' + seatrow + ']').css('background', 'green')
       // selectedSeat = $(this)
       // console.log($('button[data-column=' + seatcolumn + '][data-row=' + seatrow + ']'));
-
     });
-
     // $('button.pixel"[data-column='seatcolumn']"').css('background', 'red')
+  }
 
 
-}
+var sendToReservation = function () {
+  $("#submitSeat").on('click',function(){
+
+    var reservation = new app.Reservation();
+
+// debugger;
+      reservation.set({
+        flight_id : selectedFlightId,
+           columns: seatcolumnSent,
+              rows: seatrow,
+              user_id: parseInt($("#current_user").val())
+      });
+
+      reservation.save();
+      // reservations.add(reservation);
+
+          console.log('datashouldbe sendt');
+
+        })
+      };
+
 
 var creatSeatPanel =
  function(column, row){
@@ -69,33 +89,34 @@ createBoard(column, row)
 
 
 
+var selectedFlightId
+var selectedPlanesId
 
-var slectedPlanesId
+var updateFlightInfo = function(selectedFlight) {
 
-var updateFlightInfo = function(slectedFlight) {
+selectedFlight[0].number
+selectedFlight[0].destination
+ selectedFlightId = selectedFlight[0].id
+ selectedPlanesId=selectedFlight[0].plane_id
 
-slectedFlight[0].number
-slectedFlight[0].destination
- slectedPlanesId=slectedFlight[0].plane_id
 
 var tr = $("<tr>");
-tr.append($("<td>").text(slectedFlight[0].flightDate));
-// a = $("<a>").attr("href", "#flight/" + slectedFlight[0].number);
-// a.text(slectedFlight[0].number);
+tr.append($("<td>").text(selectedFlight[0].flightDate));
+// a = $("<a>").attr("href", "#flight/" + selectedFlight[0].number);
+// a.text(selectedFlight[0].number);
 // td = $("<td>").html(a);
 //
 // tr.append(td);
-tr.append($("<td>").text(slectedFlight[0].number));
+tr.append($("<td>").text(selectedFlight[0].number));
 
-tr.append($("<td>").text(slectedFlight[0].origin + " > " + slectedFlight[0].destination))
+tr.append($("<td>").text(selectedFlight[0].origin + " > " + selectedFlight[0].destination))
 
 
-tr.append($("<td>").text(slectedFlight[0].number))
 
 $('#myFlightTable>tbody').append(tr);
 
 
-  console.log(slectedFlight)
+  console.log(selectedFlight)
 
   //from here to put in to the template
 }
@@ -114,8 +135,8 @@ var updatePlaneInfo = function (slectedPlanes) {
 
 var tr = $("<tr>");
 tr.append($("<td>").text(slectedPlanes[0].name));
-// a = $("<a>").attr("href", "#flight/" + slectedFlight[0].number);
-// a.text(slectedFlight[0].number);
+// a = $("<a>").attr("href", "#flight/" + selectedFlight[0].number);
+// a.text(selectedFlight[0].number);
 // td = $("<td>").html(a);
 //
 // tr.append(td);
@@ -129,7 +150,7 @@ tr.append($("<td>").text(slectedPlanes[0].columns * slectedPlanes[0].rows))
 $('#myPlaneTable>tbody').append(tr);
 
 
-  console.log(slectedFlight)
+  console.log(selectedFlight)
 
 
 }
@@ -140,9 +161,6 @@ $('#myPlaneTable>tbody').append(tr);
 
 app.FlightReserveView = Backbone.View.extend({
 
-
-
-
     el: "#main", //referere an existing element with the id of main
 
     render: function(flightNumber) {
@@ -151,37 +169,44 @@ app.FlightReserveView = Backbone.View.extend({
         //set the html of the element with the id of main to be that appViewTemplate, make sure to use the keyword 'this'
         var flights = new app.Flights();
         var planes = new app.Planes();
+        var reservations = new app.Reservations();
 
         flights.fetch().done(function(flights) {
             allFlights = flights;
-            slectedFlight = _.filter(allFlights, function(flight) {
+            selectedFlight = _.filter(allFlights, function(flight) {
                 return flight.number === flightNumber
             })
+            updateFlightInfo(selectedFlight);
+            planes.fetch().done(function(planes){
+              allPlanes = planes;
+              slectedPlanes = _.filter(allPlanes, function(plane) {
+                return plane.id === selectedPlanesId
+              });
+              updatePlaneInfo(slectedPlanes);
+              reservations.fetch().done(function(reservations) {
+                console.log(reservations)
+                allReservations = reservations;
+                slectedReservation = _.filter(allReservations, function(reservation) {
+                  return reservation.flight_id === selectedFlightId
+                })
 
-            updateFlightInfo(slectedFlight);
+                _.each(slectedReservation, function(reservation) {
+                  var row = reservation.data("row");
+                  var column = reservation.data("column");
 
+                })
+                sendToReservation()
 
-                    planes.fetch().done(function(planes){
-                      allPlanes = planes;
-                      slectedPlanes = _.filter(allPlanes, function(plane) {
-                        return plane.id === slectedPlanesId
-                      })
-
-
-                      updatePlaneInfo(slectedPlanes);
-
-                    })
-
-
-
+              });
+            })
         });
 
 
         this.$el.html(appViewTemplate)
 
 
-    }
-})
+
+}})
 
 
 

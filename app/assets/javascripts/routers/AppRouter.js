@@ -7,11 +7,11 @@ app.AppRouter = Backbone.Router.extend({
     "flight/:id" : 'flightReserve'
   },
 
-  index: function (){
-    console.log("Empty client-side URL, index method ran");
-    var appView = new app.AppView();
-    appView.render();
-  },
+  // index: function (){
+  //   console.log("Empty client-side URL, index method ran");
+  //   var appView = new app.AppView();
+  //   appView.render();
+  // },
 
   searchflight: function () {
     var searchView = new app.SearchView();

@@ -3,7 +3,7 @@
     Our app goes here.
 
 </div>
-
+<input type="hidden" id="current_user" value="<%= @current_user.id%>">
 <script id="flightReserveTemplate" type="html/template">
 
 
@@ -48,7 +48,7 @@
 
 <hr/>
 
-<p class='selectSeatShow'>  </p>
+<p class='selectSeatShow'>  </p> <button id="submitSeat">Book your Seat</button>
 
 <div class="seatPanel"></div>
 
