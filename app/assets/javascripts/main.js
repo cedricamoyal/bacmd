@@ -12,11 +12,12 @@ $(document).ready(function() {
       app.router = new app.AppRouter();
       Backbone.history.start();
 
-      app.reservations.fetch();
-
-      window.setInterval(function(){
-        app.reservations.fetch();
-      }, 3000);
+      // app.reservations.fetch();
+      //
+      // window.setInterval(function(){
+      //   app.reservations.fetch();
+      // }, 3000);
 
 
            })
+// flights.fetch()

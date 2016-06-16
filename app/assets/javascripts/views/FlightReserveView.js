@@ -197,23 +197,23 @@ app.FlightReserveView = Backbone.View.extend({
                 return plane.id === selectedPlanesId
               });
               updatePlaneInfo(slectedPlanes);
-              reservations.fetch().done(function(reservations) {
-                console.log(reservations)
-                allReservations = reservations;
-                slectedReservation = _.filter(allReservations, function(reservation) {
-                  return reservation.flight_id === selectedFlightId
-                  console.log(slectedReservation)
-                })
-
-                  var row =  _.pluck(slectedReservation, "rows");
-                  var column = _.pluck (slectedReservation, "columns");
-
-                  console.log(row)
-                  console.log(column)
-                  colorSeats(column,row)
+              // reservations.fetch().done(function(reservations) {
+              //   console.log(reservations)
+              //   allReservations = reservations;
+              //   slectedReservation = _.filter(allReservations, function(reservation) {
+              //     return reservation.flight_id === selectedFlightId
+              //     console.log(slectedReservation)
+              //   })
+              //
+              //     var row =  _.pluck(slectedReservation, "rows");
+              //     var column = _.pluck (slectedReservation, "columns");
+              //
+              //     console.log(row)
+              //     console.log(column)
+              //     colorSeats(column,row)
                 sendToReservation()
 
-              });
+              // });
             })
         });
 
@@ -225,7 +225,31 @@ app.FlightReserveView = Backbone.View.extend({
 }})
 
 
+$(document).ready(function() {
 
+  app.reservations = new app.Reservations();
+
+
+      window.setInterval(function(){
+        app.reservations.fetch().done(function(reservations){
+            console.log(reservations)
+            allReservations = reservations;
+            slectedReservation = _.filter(allReservations, function(reservation) {
+              return reservation.flight_id === selectedFlightId
+              console.log(slectedReservation)
+            })
+
+              var row =  _.pluck(slectedReservation, "rows");
+              var column = _.pluck (slectedReservation, "columns");
+
+              console.log(row)
+              console.log(column)
+              colorSeats(column,row)
+        });
+      }, 3000);
+
+
+           })
 //
 // app.SecretView = Backbone.View.extend({
 //   tagName: 'li', //$("<li>")
