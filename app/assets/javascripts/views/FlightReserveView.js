@@ -31,7 +31,7 @@ var createPixel = function(column, row) {
                 'width': 30 / column + 'vw',
                 'height': 10 + 'vh',
             })
-            $bb.text((alphabet[j]) + (i+1))
+            $bb.text( (i+1)+(alphabet[j]))
             $bb.appendTo('.seatPanel');
         }
     }
