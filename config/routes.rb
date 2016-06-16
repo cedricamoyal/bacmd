@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   post "/login" => 'session#create'
   delete "/logout" => 'session#destroy', :as => 'logout'
 
+  get "/search" => "flights#search", :as => 'search'
+
+
+
 end

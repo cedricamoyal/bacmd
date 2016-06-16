@@ -24,11 +24,17 @@
                 <div class="stepsDetailsShow">
 
                   <h4><%= link_to flight.number, "/flights/#{flight.id}" %></h4>
+                  <h5>Flight Number: <span><%= flight.number %></span></h5>
 
                   <h5>Origin: <span><%= flight.origin %></span></h5>
                   <h5>Destination: <span><%= flight.destination %></span></h5>
                   <h5>Date: <span><%= flight.flightDate %></span></h5>
                   <h5>Plane_ID: <span><%= flight.plane_id %></span></h5>
+
+                  <h5>Plane name: <span><%= flight.plane.name %></span></h5>
+                  <h5>Plane rows: <span><%= flight.plane.rows %></span></h5>
+                  <h5>Plane columns: <span><%= flight.plane.columns %></span></h5>
+                  <h5>Seats in plane: <span><%= flight.plane.rows * flight.plane.columns %></span></h5>
 
                 </div>
            </div>
