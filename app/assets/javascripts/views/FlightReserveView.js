@@ -86,8 +86,7 @@ var sendToReservation = function () {
 
       reservation.save();
       // reservations.add(reservation);
-
-          console.log('datashouldbe sendt');
+      $('.SeatBooked').text('You have booked Seat : ' + seatrow +seatcolumn)
 
         })
       };
