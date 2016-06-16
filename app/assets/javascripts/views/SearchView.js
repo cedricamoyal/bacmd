@@ -37,7 +37,7 @@ var updateTable = function(flights) {
   el: "#main", //referere an existing element with the id of main
 
   render: function() {
-    console.log ("App view should be rendered now")
+    console.log ("App view should be rendered now this is the search view")
     var appViewTemplate = $("#searchViewTemplate").html();
     //set the html of the element with the id of main to be that appViewTemplate, make sure to use the keyword 'this'
     var flights = new app.Flights();

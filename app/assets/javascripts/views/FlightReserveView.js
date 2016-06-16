@@ -1,9 +1,63 @@
 var app = app || {};
 
+var slectedPlanesId
 
-var updateFlightInfo = function(slectedFlightInfo) {
+var updateFlightInfo = function(slectedFlight) {
 
-  console.log(slectedFlightInfo)
+slectedFlight[0].number
+slectedFlight[0].destination
+ slectedPlanesId=slectedFlight[0].plane_id
+
+var tr = $("<tr>");
+tr.append($("<td>").text(slectedFlight[0].flightDate));
+// a = $("<a>").attr("href", "#flight/" + slectedFlight[0].number);
+// a.text(slectedFlight[0].number);
+// td = $("<td>").html(a);
+//
+// tr.append(td);
+tr.append($("<td>").text(slectedFlight[0].number));
+
+tr.append($("<td>").text(slectedFlight[0].origin + " > " + slectedFlight[0].destination))
+
+
+tr.append($("<td>").text(slectedFlight[0].number))
+
+$('#myFlightTable>tbody').append(tr);
+
+
+  console.log(slectedFlight)
+
+  //from here to put in to the template
+}
+
+
+var updatePlaneInfo = function (slectedPlanes) {
+slectedPlanes[0].columns
+slectedPlanes[0].rows
+slectedPlanes[0].name
+
+
+
+var tr = $("<tr>");
+tr.append($("<td>").text(slectedPlanes[0].name));
+// a = $("<a>").attr("href", "#flight/" + slectedFlight[0].number);
+// a.text(slectedFlight[0].number);
+// td = $("<td>").html(a);
+//
+// tr.append(td);
+tr.append($("<td>").text(slectedPlanes[0].rows));
+
+tr.append($("<td>").text(slectedPlanes[0].columns))
+
+
+tr.append($("<td>").text(slectedPlanes[0].columns * slectedPlanes[0].rows))
+
+$('#myPlaneTable>tbody').append(tr);
+
+
+  console.log(slectedFlight)
+
+
 }
 
 
@@ -19,17 +73,31 @@ app.FlightReserveView = Backbone.View.extend({
         var appViewTemplate = $("#flightReserveTemplate").html();
         //set the html of the element with the id of main to be that appViewTemplate, make sure to use the keyword 'this'
         var flights = new app.Flights();
+        var planes = new app.Planes();
 
         flights.fetch().done(function(flights) {
-            app.flights = flights;
-            slectedFlightInfo = _.filter(app.flights, function(flight) {
+            allFlights = flights;
+            slectedFlight = _.filter(allFlights, function(flight) {
                 return flight.number === flightNumber
             })
 
-            updateFlightInfo(slectedFlightInfo);
+            updateFlightInfo(slectedFlight);
 
 
-        })
+                    planes.fetch().done(function(planes){
+                      allPlanes = planes;
+                      slectedPlanes = _.filter(allPlanes, function(plane) {
+                        return plane.id === slectedPlanesId
+                      })
+
+
+                      updatePlaneInfo(slectedPlanes)
+                    })
+
+
+
+        });
+
 
         this.$el.html(appViewTemplate)
 
