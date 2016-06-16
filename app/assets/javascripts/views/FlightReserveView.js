@@ -15,19 +15,49 @@ var createBoard = function(column, row) {
 
 var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+var seatrow
+var seatcolumn
+
 var createPixel = function(column, row) {
     for (var i = 0; i < row; i++) {
         for (var j = 0; j < column; j++) {
             $('<button/>', {
                 'class': 'pixel',
-                'data-i': j,
-                'data-j': i,
+                'data-column': alphabet[j],
+                'data-row': i+1,
                 'width': 30 / column + 'vw',
-                'height': 80 / row + 'vh'
+                'height': 3 + 'vh'
 
             }).appendTo('.seatPanel');
         }
     }
+    var selectedSeat=$('fake')
+
+
+    $('button.pixel').on('click', function(){
+      console.log($(this).data("row"));
+      console.log($(this).data("column"));
+      // selectedSeat.css('background', 'none');
+
+      selectedSeat.css('background', 'none');
+      selectedSeat=$(this)
+
+      $(this).css('background', 'red');
+
+      seatrow = $(this).data("row")
+      seatcolumn = $(this).data("column")
+
+      $('.selectSeatShow').text('Your Seat : ' + seatrow +seatcolumn )
+      // $('button[data-column='seatcolumn'"][data-row="'seatrow'"]').css(('background', 'red'))
+        $('button[data-column=' + seatcolumn + '][data-row=' + seatrow + ']').css('background', 'green')
+      // selectedSeat = $(this)
+      // console.log($('button[data-column=' + seatcolumn + '][data-row=' + seatrow + ']'));
+
+    });
+
+    // $('button.pixel"[data-column='seatcolumn']"').css('background', 'red')
+
+
 }
 
 var creatSeatPanel =
@@ -76,9 +106,7 @@ var planeRow
 var updatePlaneInfo = function (slectedPlanes) {
  planeColume = slectedPlanes[0].columns
  planeRow = slectedPlanes[0].rows
- createPixel(planeColume, planeRow)
-
-
+ creatSeatPanel(planeColume, planeRow)
 
  slectedPlanes[0].name
 
@@ -150,6 +178,7 @@ app.FlightReserveView = Backbone.View.extend({
 
 
         this.$el.html(appViewTemplate)
+
 
     }
 })

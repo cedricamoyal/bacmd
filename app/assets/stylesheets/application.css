@@ -17,10 +17,12 @@
 
 
  .seatPanel {
-   width:30vw;
+   width:31vw;
 
    height:80vh;
    border:1px solid black;
+   left : 40px;
+   position: absolute;
 
  }
  .pixel {
