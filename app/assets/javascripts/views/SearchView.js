@@ -10,7 +10,7 @@ var updateTable = function(flights) {
     td = $("<td>").html(a);
     tr.append(td);
     tr.append($("<td>").text(flight.origin + " > " + flight.destination))
-    tr.append($("<td>").text(flight.number))
+    tr.append($("<td>").text(flight.plane.rows * flight.plane.columns))
 
     $('#myFlightTable>tbody').append(tr);
   });

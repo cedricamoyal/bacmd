@@ -1,6 +1,25 @@
+
+
+#from {
+  margin: 10px;
+}
+
+#to {
+  margin: 10px;
+}
+
+th {
+  width: 150px;
+  text-align: center;
+}
+
+
 body {
   // background-color: #F1F1F7;
-  background-color: #DCDCE4;
+  background-color: #D2ECEE;
+  background-image: url(http://randomwallpapers.net/paper-plane-house-1920x1080-wallpaper466587.jpg);
+
+  background-size: cover;
 }
 
 
@@ -104,7 +123,9 @@ b {
   border-radius: 8px;
   padding: 20px;
   background-color: #f8f8f8;
-  height: 562px;
+  // height: 562px;
+  height: auto;
+  opacity: 0.88;
 }
 
 .col-md-4 {
@@ -179,4 +200,10 @@ font-weight: 200;
   height: auto;
   padding: 55px;
 
+}
+
+.reservationSquare {
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 50px;
 }

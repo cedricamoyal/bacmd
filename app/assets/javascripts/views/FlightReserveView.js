@@ -23,15 +23,16 @@ var seatcolumnSent
 var createPixel = function(column, row) {
     for (var i = 0; i < row; i++) {
         for (var j = 0; j < column; j++) {
-            $('<button/>', {
+            var $bb = $('<button/>', {
                 'class': 'pixel',
                 'data-column': alphabet[j],
                 'data-column2':j,
                 'data-row': i+1,
                 'width': 30 / column + 'vw',
-                'height': 3 + 'vh'
-
-            }).appendTo('.seatPanel');
+                'height': 10 + 'vh',
+            })
+            $bb.text((alphabet[j]) + (i+1))
+            $bb.appendTo('.seatPanel');
         }
     }
     var selectedSeat=$('fake')
@@ -41,7 +42,13 @@ var createPixel = function(column, row) {
       console.log($(this).data("row"));
       console.log($(this).data("column"));
       // selectedSeat.css('background', 'none');
-      selectedSeat.css('background', 'none');
+
+      // selectedSeat.css('background', 'none');
+
+
+      selectedSeat.css('background', 'white');
+
+
       selectedSeat=$(this)
       $(this).css('background', 'red');
 
@@ -109,9 +116,10 @@ tr.append($("<td>").text(selectedFlight[0].flightDate));
 // tr.append(td);
 tr.append($("<td>").text(selectedFlight[0].number));
 
-tr.append($("<td>").text(selectedFlight[0].origin + " > " + selectedFlight[0].destination))
+tr.append($("<td>").text(slectedFlight[0].origin))
 
 
+tr.append($("<td>").text(slectedFlight[0].destination))
 
 $('#myFlightTable>tbody').append(tr);
 
