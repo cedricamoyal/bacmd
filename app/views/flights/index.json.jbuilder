@@ -3,4 +3,5 @@ json.array!(@flights) do |flight|
 
 
   json.url flight_url(flight, format: :json)
+  json.plane flight.plane
 end

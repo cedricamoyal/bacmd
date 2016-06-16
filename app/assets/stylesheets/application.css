@@ -18,14 +18,17 @@
 
  .seatPanel {
    width:31vw;
-
-   height:80vh;
-   border:1px solid black;
+  height: auto;
+   /*height:80vh;*/
+   /*border:1px solid green;*/
    left : 40px;
-   position: absolute;
+   /*position: absolute;*/
+   display: inline-block;
 
  }
  .pixel {
 
    border:1px solid black;
+   border-radius: 3px;
+   background-color: white;
  }

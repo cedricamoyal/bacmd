@@ -23,15 +23,6 @@ class PlanesController < ApplicationController
       if @current_user && @current_user.admin
     plane = Plane.create plane_params
 
-    # respond_to do |format|
-    #       if plane.save
-    #         format.html { redirect_to plane, notice: 'Secret was successfully created.' }
-    #         format.json { render :show, status: :created, location: plane }
-    #       else
-    #         format.html { render :new }
-    #         format.json { render json: plane.errors, status: :unprocessable_entity }
-    #       end
-    #     end
     redirect_to plane
      end
   end
@@ -48,16 +39,14 @@ class PlanesController < ApplicationController
     plane.update plane_params
 
     respond_to do |format|
-      if plane.update(secret_params)
-        format.html { redirect_to plane, notice: 'Secret was successfully updated.' }
+      if plane.update(plane_params)
+        format.html { redirect_to plane, notice: 'A plane was successfully updated.' }
         format.json { render :show, status: :ok, location: plane }
       else
         format.html { render :edit }
         format.json { render json: plane.errors, status: :unprocessable_entity }
       end
     end
-
-    redirect_to plane
     end
   end
 
