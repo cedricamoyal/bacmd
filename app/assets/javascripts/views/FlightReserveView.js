@@ -116,10 +116,10 @@ tr.append($("<td>").text(selectedFlight[0].flightDate));
 // tr.append(td);
 tr.append($("<td>").text(selectedFlight[0].number));
 
-tr.append($("<td>").text(slectedFlight[0].origin))
+tr.append($("<td>").text(selectedFlight[0].origin))
 
 
-tr.append($("<td>").text(slectedFlight[0].destination))
+tr.append($("<td>").text(selectedFlight[0].destination))
 
 $('#myFlightTable>tbody').append(tr);
 
@@ -196,12 +196,15 @@ app.FlightReserveView = Backbone.View.extend({
                 allReservations = reservations;
                 slectedReservation = _.filter(allReservations, function(reservation) {
                   return reservation.flight_id === selectedFlightId
+                  console.log(slectedReservation)
                 })
 
                 _.each(slectedReservation, function(reservation) {
                   var row = reservation.data("row");
                   var column = reservation.data("column");
 
+                  console.log(row)
+                  console.log(column)
                 })
                 sendToReservation()
 
