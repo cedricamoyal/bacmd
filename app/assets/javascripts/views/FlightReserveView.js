@@ -57,11 +57,17 @@ var createPixel = function(column, row) {
       seatcolumnSent = $(this).data("column2")
       $('.selectSeatShow').text('Your Seat : ' + seatrow +seatcolumn )
       // $('button[data-column='seatcolumn'"][data-row="'seatrow'"]').css(('background', 'red'))
-        $('button[data-column=' + seatcolumn + '][data-row=' + seatrow + ']').css('background', 'green')
+        $('button[data-column=' + seatcolumn + '][data-row=' + seatrow + ']').css('background', 'green');
       // selectedSeat = $(this)
       // console.log($('button[data-column=' + seatcolumn + '][data-row=' + seatrow + ']'));
     });
     // $('button.pixel"[data-column='seatcolumn']"').css('background', 'red')
+  }
+
+  var colorSeats = function (colume, row) {
+    for(i=0; i <colume.length; i++){
+     $('button[data-column2=' + colume[i] + '][data-row=' + row[i] + ']').css('background', 'green').attr("disabled", true);
+    }
   }
 
 
@@ -199,13 +205,12 @@ app.FlightReserveView = Backbone.View.extend({
                   console.log(slectedReservation)
                 })
 
-                _.each(slectedReservation, function(reservation) {
-                  var row = reservation.data("row");
-                  var column = reservation.data("column");
+                  var row =  _.pluck(slectedReservation, "rows");
+                  var column = _.pluck (slectedReservation, "columns");
 
                   console.log(row)
                   console.log(column)
-                })
+                  colorSeats(column,row)
                 sendToReservation()
 
               });

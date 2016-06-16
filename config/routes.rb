@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   delete "/logout" => 'session#destroy', :as => 'logout'
 
   get "/search" => "flights#search", :as => 'flight_search'
+root "session#new"
 
 end
