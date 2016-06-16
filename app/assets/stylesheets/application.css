@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+ .seatPanel {
+   width:30vw;
+
+   height:80vh;
+   border:1px solid black;
+
+ }
+ .pixel {
+
+   border:1px solid black;
+ }

@@ -1,5 +1,45 @@
 var app = app || {};
 
+
+var arrayTotal;
+var createBoard = function(column, row) {
+    arrayTotal = []
+    for (var i = 0; i < column; i++) {
+        arrayTotal[i] = [];
+        for (var j = 0; j < row; j++) {
+            arrayTotal[i][j] = ' ';
+        }
+    }
+    return arrayTotal;
+}
+
+var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+var createPixel = function(column, row) {
+    for (var i = 0; i < row; i++) {
+        for (var j = 0; j < column; j++) {
+            $('<button/>', {
+                'class': 'pixel',
+                'data-i': j,
+                'data-j': i,
+                'width': 30 / column + 'vw',
+                'height': 80 / row + 'vh'
+
+            }).appendTo('.seatPanel');
+        }
+    }
+}
+
+var creatSeatPanel =
+ function(column, row){
+
+createPixel(column, row)
+createBoard(column, row)
+}
+
+
+
+
 var slectedPlanesId
 
 var updateFlightInfo = function(slectedFlight) {
@@ -30,11 +70,17 @@ $('#myFlightTable>tbody').append(tr);
   //from here to put in to the template
 }
 
+var planeColume
+var planeRow
 
 var updatePlaneInfo = function (slectedPlanes) {
-slectedPlanes[0].columns
-slectedPlanes[0].rows
-slectedPlanes[0].name
+ planeColume = slectedPlanes[0].columns
+ planeRow = slectedPlanes[0].rows
+ createPixel(planeColume, planeRow)
+
+
+
+ slectedPlanes[0].name
 
 
 
@@ -59,6 +105,9 @@ $('#myPlaneTable>tbody').append(tr);
 
 
 }
+
+
+
 
 
 app.FlightReserveView = Backbone.View.extend({
@@ -91,7 +140,8 @@ app.FlightReserveView = Backbone.View.extend({
                       })
 
 
-                      updatePlaneInfo(slectedPlanes)
+                      updatePlaneInfo(slectedPlanes);
+
                     })
 
 
