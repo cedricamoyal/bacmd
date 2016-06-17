@@ -100,7 +100,7 @@ createBoard(column, row)
 }
 
 
-
+var bookedSeat
 var selectedFlightId
 var selectedPlanesId
 
@@ -129,20 +129,21 @@ tr.append($("<td>").text(selectedFlight[0].destination))
 $('#myFlightTable>tbody').append(tr);
 
 
-  console.log(selectedFlight)
+  // console.log(selectedFlight)
 
   //from here to put in to the template
 }
 
 var planeColume
 var planeRow
-
+var row1
 var updatePlaneInfo = function (slectedPlanes) {
  planeColume = slectedPlanes[0].columns
  planeRow = slectedPlanes[0].rows
  creatSeatPanel(planeColume, planeRow)
 
  slectedPlanes[0].name
+ bookedSeat = slectedPlanes[0].columns * slectedPlanes[0].rows
 
 
 
@@ -157,13 +158,12 @@ tr.append($("<td>").text(slectedPlanes[0].rows));
 
 tr.append($("<td>").text(slectedPlanes[0].columns))
 
-
-tr.append($("<td>").text(slectedPlanes[0].columns * slectedPlanes[0].rows))
+tr.append($("<td>").text(slectedPlanes[0].columns * slectedPlanes[0].rows ))
 
 $('#myPlaneTable>tbody').append(tr);
 
 
-  console.log(selectedFlight)
+  // console.log(selectedFlight)
 
 
 }
@@ -195,7 +195,11 @@ app.FlightReserveView = Backbone.View.extend({
               slectedPlanes = _.filter(allPlanes, function(plane) {
                 return plane.id === selectedPlanesId
               });
+
               updatePlaneInfo(slectedPlanes);
+
+
+
               // reservations.fetch().done(function(reservations) {
               //   console.log(reservations)
               //   allReservations = reservations;
@@ -231,19 +235,24 @@ $(document).ready(function() {
 
       window.setInterval(function(){
         app.reservations.fetch().done(function(reservations){
-            console.log(reservations)
+            // console.log(reservations)
             allReservations = reservations;
             slectedReservation = _.filter(allReservations, function(reservation) {
               return reservation.flight_id === selectedFlightId
               console.log(slectedReservation)
             })
 
-              var row =  _.pluck(slectedReservation, "rows");
+               var row =  _.pluck(slectedReservation, "rows");
               var column = _.pluck (slectedReservation, "columns");
+                row1 = row.length
 
-              console.log(row)
-              console.log(column)
+                $(".available_seat").text(bookedSeat - row1 )
+              // console.log(row)
+              // console.log(column)
               colorSeats(column,row)
+
+
+
         });
       }, 3000);
 
