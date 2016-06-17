@@ -18,7 +18,7 @@ t.integer :plane_id -->
   </p>
 
   <p>
-    <%= f.label :plane_id, :class => "labels", :class => "label1" %>
+    <%= f.label :plane_id, :class => "labels", :class => "label1", :id => "plane_select" %>
       <% sorted_planes = Plane.all.sort_by { |c| c.name } %>
     <%= f.select :plane_id, sorted_planes.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
   </p>
