@@ -4,7 +4,7 @@ For demo please go to https://hidden-beyond-84843.herokuapp.com/
 admin_account: donn@ga.co password:chicken
 
 
-I felt very pround of building this project with two teammates just in two days. We basicly finished most parts of the requirments and adding a flight seats generating system. Here are few features of this projects:
+I felt very pround of building this project with two teammates just in two days. We briefly finished all parts of the requirments and adding a flight seats generating system. Here are few features of this projects:
 
 a living updating reservation system by using backbone.js
 a updating flight seaching page which refresh the table with inputs.
